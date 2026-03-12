@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  --aqua: #6fc6c5;
+  --sky: #B1DFF2;
+  --orange: #FCAB6B;
+  --ivory: #FCF3E5;
+  --silver: #BCB7AE;
+  --gray: #4f4545;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* 全站預設字型（繁中友善字型優先） */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+    "PingFang TC", "Microsoft JhengHei", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --color-aqua: var(--aqua);
+  --color-sky: var(--sky);
+  --color-orange: var(--orange);
+  --color-ivory: var(--ivory);
+  --color-silver: var(--silver);
+  --color-gray: var(--gray);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
