@@ -36,7 +36,7 @@ export default function ApplyPage() {
         phase = "apply";
         const total = applyEnd.getTime() - applyStart.getTime();
         const elapsed = now.getTime() - applyStart.getTime();
-        progressValue = 25 + (elapsed / total) * 25; // 0-25% -> 25-50%
+        progressValue = (elapsed / total) * 50; // 0-50%
         stepIndex = 1; // 報名開始已完成
 
         // 計算剩餘時間
@@ -50,7 +50,7 @@ export default function ApplyPage() {
         phase = "review";
         const total = resultAnnounce.getTime() - applyEnd.getTime();
         const elapsed = now.getTime() - applyEnd.getTime();
-        progressValue = 50 + (elapsed / total) * 25; // 50-75%
+        progressValue = 50 + (elapsed / total) * 50; // 50-100%
         stepIndex = 2; // 報名開始、報名截止已完成
         setTimeRemaining(null);
       } else {
