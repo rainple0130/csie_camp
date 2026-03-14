@@ -9,6 +9,7 @@ const navItems = [
   { href: "/apply", label: "報名資訊" },
   { href: "/courses", label: "課程介紹" },
   { href: "/activities", label: "活動介紹" },
+  { href: "/visit", label: "參訪 & 講座" },
   { href: "/qa", label: "FAQ" },
 ];
 
@@ -23,19 +24,19 @@ export function Header() {
         {/* Logo / Title */}
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight text-ivory sm:text-xl"
+          className="text-lg font-semibold tracking-tight text-ivory lg:text-xl"
           onClick={close}
         >
           {campInfo.title} - {campInfo.name}
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 text-md sm:flex">
+        <nav className="hidden items-center gap-8 text-md md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="relative text-md text-ivory transition-all duration-300 ease-in-out hover:font-bold hover:text-aqua
+              className="relative lg:text-md text-sm text-ivory transition-all duration-300 ease-in-out hover:font-bold hover:text-aqua
                 after:absolute after:-bottom-0.5 after:left-0 after:h-[3px] after:w-0 after:bg-aqua after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               {item.label}
@@ -52,7 +53,7 @@ export function Header() {
         {/* Mobile hamburger */}
         <button
           type="button"
-          className="flex h-9 w-9 items-center justify-center rounded-md text-ivory sm:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-md text-ivory md:hidden"
           onClick={() => setOpen(!open)}
           aria-label="開啟主選單"
         >
@@ -62,7 +63,7 @@ export function Header() {
 
       {/* Mobile menu panel */}
       {open && (
-        <div className="border-t border-ivory/20 bg-gray/95 sm:hidden">
+        <div className="border-t border-ivory/20 bg-gray/95 md:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 text-sm text-ivory">
             {navItems.map((item) => (
               <Link

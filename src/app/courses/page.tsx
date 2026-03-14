@@ -1,47 +1,81 @@
-import { courses } from "../../data/courses";
-import { SectionTitle } from "../../components/common/SectionTitle";
-
 export default function CoursesPage() {
   return (
-    <div className="bg-slate-50">
-      <section className="mx-auto max-w-5xl px-4 py-10">
-        <SectionTitle
-          title="課程介紹"
-          subtitle="從基礎到進階，循序漸進體驗資工學習"
-        />
+    <div className="min-h-screen bg-ivory text-gray">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold text-gray sm:text-4xl">課程介紹</h1>
+        <p className="mt-2 text-lg text-silver">從基礎到進階，循序漸進進入資訊系的世界</p>
 
-        <p className="mb-6 text-sm text-slate-700">
-          營期共數天，課程內容將依實際規劃微調，下列為範例時程供參考。
-        </p>
-
-        <div className="space-y-4">
-          {courses.map((course) => (
-            <div
-              key={course.id}
-              className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-slate-900 px-2 py-0.5 text-xs font-medium text-white">
-                    {course.day}
-                  </span>
-                  <span className="text-xs text-slate-500">
-                    {course.time}
-                  </span>
-                </div>
-                <span className="rounded-full bg-sky-50 px-2 py-0.5 text-xs text-sky-700">
-                  {course.level === "intro" ? "入門" : "進階"}
-                </span>
-              </div>
-              <h3 className="mt-2 text-base font-semibold">{course.title}</h3>
-              <p className="mt-1 text-sm text-slate-700">{course.description}</p>
-              <p className="mt-1 text-xs text-slate-500">
-                授課講師：{course.lecturer}
-              </p>
-            </div>
-          ))}
+        {/* 課程簡介 */}
+        <div className="mt-10 rounded-2xl bg-white/50 p-6 shadow-md sm:p-8">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">📕</span>
+            <h2 className="text-2xl font-bold text-aqua">課程簡介</h2>
+          </div>
+          <p className="mt-4 text-base leading-relaxed text-gray sm:text-lg">
+            Python 是一款非常適合初學者入門，能快速上手並廣泛使用的程式語言。我們安排了數堂課程，讓小隊員熟悉 Python 的基礎語法。並且在課程後設置了 challenge 活動，讓小隊員運用所學、做出一個屬於自己的小專案，寫出可以自己玩遊戲的遊戲 AI，成就感滿滿～
+          </p>
         </div>
-      </section>
+
+        {/* 課程內容 */}
+        <div className="mt-8 rounded-2xl bg-white/50 p-6 shadow-md sm:p-8">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">📗</span>
+            <h2 className="text-2xl font-bold text-aqua">課程內容</h2>
+          </div>
+          <p className="mt-4 text-base leading-relaxed text-gray sm:text-lg">
+            課程內容涵蓋 Python 的基礎語法，如：輸入輸出、變數、資料型別、流程控制、函式⋯⋯等等。這些基本語法雖然簡單但是特別強大，可以讓電腦做出我們心中所想，進而讓我們設計出一支遊戲 AI！
+          </p>
+        </div>
+
+        {/* 教學方式 */}
+        <div className="mt-8 rounded-2xl bg-white/50 p-6 shadow-md sm:p-8">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">📘</span>
+            <h2 className="text-2xl font-bold text-aqua">教學方式</h2>
+          </div>
+          <p className="mt-4 text-base leading-relaxed text-gray sm:text-lg">
+            我們的課程採取「做中學、學中做」的方法。講師講解基本語法時，會不時穿插實作練習，並有專業助教團隊隨時幫小隊員解惑。講師群精心設計的主題也能讓小隊員將程式碼與實體世界的運作相互連結、幫助大家更快上手。
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl bg-orange/10 p-4">
+              <p className="text-sm font-semibold text-orange">實作練習</p>
+              <p className="mt-1 text-sm text-gray">講師講解時穿插實作，立即應用所學</p>
+            </div>
+            <div className="rounded-xl bg-aqua/10 p-4">
+              <p className="text-sm font-semibold text-aqua">助教協助</p>
+              <p className="mt-1 text-sm text-gray">專業助教團隊隨時為小隊員解惑</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Challenge 活動 */}
+        <div className="mt-8 rounded-2xl bg-white/50 p-6 shadow-md sm:p-8">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">📙</span>
+            <h2 className="text-2xl font-bold text-aqua">Challenge 活動</h2>
+          </div>
+          <p className="mt-4 text-base leading-relaxed text-gray sm:text-lg">
+            課程最後還有一個 challenge 活動，各個小隊需要針對我們提供的遊戲，利用課堂所學撰寫出一支遊戲 AI。在過程中，小隊員們將發展出與他人溝通、共同合作的能力，並且培養出「系統化解決問題的邏輯思維」，讓大家往後面對日常生活中的問題時，可以善用這些能力。
+          </p>
+          <div className="mt-6 rounded-xl bg-aqua/10 p-4">
+            <p className="text-sm font-semibold text-aqua">活動目標</p>
+            <ul className="mt-2 space-y-1 text-sm text-gray">
+              <li className="flex items-start gap-2">
+                <span className="text-aqua">•</span>
+                <span>運用課堂所學撰寫遊戲 AI</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-aqua">•</span>
+                <span>培養團隊合作與溝通能力</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-aqua">•</span>
+                <span>建立系統化解決問題的邏輯思維</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
