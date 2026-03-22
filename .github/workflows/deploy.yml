@@ -35,13 +35,11 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          NEXT_PUBLIC_BASE_PATH: /csie_camp
 
-      - name: Ensure nojekyll for _next assets
-        run: touch out/.nojekyll
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Setup Pages (auto-inject basePath for Next)
+        uses: actions/configure-pages@v5
+        with:
+          static_site_generator: next
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
