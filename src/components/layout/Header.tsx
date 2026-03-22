@@ -36,7 +36,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative lg:text-md text-sm text-ivory transition-all duration-300 ease-in-out hover:font-bold hover:text-aqua
+              className="relative text-md text-ivory transition-all duration-300 ease-in-out hover:font-bold hover:text-aqua
                 after:absolute after:-bottom-0.5 after:left-0 after:h-[3px] after:w-0 after:bg-aqua after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
               {item.label}
