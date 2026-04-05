@@ -211,7 +211,14 @@ export function ActivitiesTabs() {
                               contentClassName="visit-measure-content"
                             >
                               {b.type === "card" ? (
-                                <p className="whitespace-pre-line">{b.description}</p>
+                                <>
+                                  <p className="whitespace-pre-line">{b.description}</p>
+                                  {b.siteUrl && (
+                                    <a href={b.siteUrl} target="_blank" rel="noopener noreferrer">
+                                      <p className="text-md font-bold text-orange mt-2">個人網站</p>
+                                    </a>
+                                  )}
+                                </>
                               ) : (
                                 <div className="whitespace-pre-line">
                                   <p className="text-lg font-bold text-aqua">Coming Soon</p>  
@@ -249,9 +256,14 @@ export function ActivitiesTabs() {
                           contentClassName="min-w-0"
                         >
                           {current.type === "card" ? (
-                            <p className="whitespace-pre-line">
-                              {current.description}
-                            </p>
+                            <>
+                              <p className="whitespace-pre-line">{current.description}</p>
+                              {current.siteUrl && (
+                                <a href={current.siteUrl} target="_blank" rel="noopener noreferrer">
+                                  <p className="text-md font-bold text-orange mt-2">個人網站</p>
+                                </a>
+                              )}
+                            </>
                           ) : (
                             <div className="whitespace-pre-line">
                               <p className="text-lg font-bold text-aqua">Coming Soon</p>

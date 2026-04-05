@@ -81,7 +81,7 @@ export const academicActivities: { title: string; description: string }[] = [
 
 export type VisitSectionBlock =
   | { type: "placeholder"}
-  | { type: "card"; title: string; description: string; imageSrc: string };
+  | { type: "card"; title: string; description: string; imageSrc: string; siteUrl?: string};
 
 export type VisitSection = {
   emoji: string;
@@ -111,12 +111,14 @@ export const visitSections: VisitSection[] = [
       { type: "card",
         title: "林軒田教授",
         description: "畢業於加州理工學院 (Caltech) 電腦科學博士並師承機器學習大師 Yaser Abu-Mostafa 的林軒田教授，其共同撰寫的《Learning From Data》被全球譽為機器學習「聖經級」教材，至今仍是頂尖大學的必讀首選；他在 Coursera 平台推出的課程吸引全球數十萬人追隨，最擅長將繁複數學證明轉化為清晰脈絡，讓學生深刻理解「為什麼」而非僅是「怎麼用」。林教授曾出任台灣 AI 獨角獸 Appier 的首席資料科學家，是極少數能將高深學術完美接軌真實世界商業應用的指標性人物",
-        imageSrc: "/activities/prof_ht.png"
+        imageSrc: "/activities/prof_ht.png",
+        siteUrl: "https://www.csie.ntu.edu.tw/~htlin/"
       },
       { type: "card",
         title: "李宏毅教授",
         description: "曾任美國 MIT 電腦科學暨人工智慧實驗室客座科學家的李宏毅教授，是華文世界第一位有系統完整講解「深度學習」的學者，讓華文圈的 AI 教學得以與歐美並駕齊驅，其單一影片瀏覽量突破 70 萬次，更是雍有 40 萬訂閱的 Youtube 頻道，更是 YouTube 上全球華人必讀的 AI 入門名師。李教授最令人佩服的是能以極其幽默且易懂的邏輯，將從基礎神經網路到最前沿的生成式 AI (Generative AI) 講述得生動平易，讓高深的學術殿堂變得觸手可及，是將複雜科技轉化為親民知識的絕佳導師。",
-        imageSrc: "/activities/prof_lee.png"
+        imageSrc: "/activities/prof_lee.png",
+        siteUrl: "https://speech.ee.ntu.edu.tw/~hylee/index.php"
       },
       { type: "placeholder"},
     ],
