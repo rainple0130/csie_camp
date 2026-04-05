@@ -1,0 +1,40 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  min-height: 0;
+}
+
+/* 與 Tailwind `sm`（640px）對齊：此寬度以上為橫向雙欄 */
+@media (min-width: 640px) {
+  .row {
+    grid-template-rows: 1fr;
+  }
+
+  .rowLeft {
+    grid-template-columns: minmax(0, var(--split-img-col, 44%)) minmax(0, 1fr);
+  }
+
+  .rowRight {
+    grid-template-columns: minmax(0, 1fr) minmax(0, var(--split-img-col, 44%));
+  }
+}
+
+.imageCell {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .imageRight {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .contentRight {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

@@ -32,19 +32,19 @@ export default function Home() {
     <div className="min-h-screen text-foreground">
       {/* Hero：固定背景大圖 + 浮空日期與立刻報名 */}
       <section
-        className="relative lg:bg-[length:70%_auto] bg-[length:100%_auto] lg:bg-right bg-center bg-fixed bg-no-repeat"
+        className="relative lg:bg-[length:70%_auto] bg-[length:90%_auto] sm:bg-right bg-center bg-fixed bg-no-repeat"
         style={{
-          backgroundImage: `url(${getAssetPath("/background.png")})`,
+          backgroundImage: `url(${getAssetPath("/background2.png")})`,
         }}
       >
-        <div className="relative z-10 flex min-h-screen max-w-2xl flex-col justify-center px-4 text-ivory ">
+        <div className="relative z-10 flex min-h-screen max-w-2xl flex-col justify-center px-4 sm:pt-0 pt-20">
           <img src={getAssetPath("/title.png")} alt="Title" className="w-3/4 sm:w-3/4 md:w-7/8" />
-          <p className="ml-5 sm:ml-10 text-xl sm:text-2xl font-bold text-gray sm:-translate-y-10 -translate-y-5">
+          <p className="ml-5 sm:ml-10 text:md xs:text-xl sm:text-2xl font-bold text-gray sm:-translate-y-10 -translate-y-5">
             {campInfo.period}
           </p>
           <Link
             href={campInfo.formUrl}
-            className="rounded-10 bg-aqua ml-10 mr-auto px-4 py-2.5 text-xl font-bold text-gray shadow-md transition-all duration-300 ease-out hover:scale-105 hover:bg-orange"
+            className="rounded-10 bg-aqua ml-10 mr-auto px-4 py-2.5 text:md xs:text-xl sm:text-2xl font-bold text-gray shadow-md transition-all duration-300 ease-out hover:scale-105 hover:bg-orange hover:text-white"
           >
             立刻報名
           </Link>

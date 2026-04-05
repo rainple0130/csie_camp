@@ -19,7 +19,7 @@ export function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="bg-gray backdrop-blur">
+    <header className="relative z-40 bg-gray backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         {/* Logo / Title */}
         <Link
@@ -44,7 +44,7 @@ export function Header() {
           ))}
           <Link
             href={campInfo.formUrl}
-            className="rounded-md bg-aqua px-4 py-1.5 text-md font-bold text-gray transition-all duration-300 ease-in-out hover:scale-105 hover:bg-orange"
+            className="rounded-md bg-aqua px-4 py-1.5 text-md font-bold text-gray transition-all duration-300 ease-in-out hover:scale-105 hover:bg-orange hover:text-white"
           >
             前往報名
           </Link>
@@ -63,7 +63,7 @@ export function Header() {
 
       {/* Mobile menu panel */}
       {open && (
-        <div className="border-t border-ivory/20 bg-gray/95 md:hidden">
+        <div className="absolute left-0 right-0 top-full z-50 border-t border-ivory/20 bg-gray/95 shadow-lg backdrop-blur md:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 text-sm text-ivory">
             {navItems.map((item) => (
               <Link
