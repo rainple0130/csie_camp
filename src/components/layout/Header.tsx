@@ -9,8 +9,7 @@ const navItems = [
   { href: "/apply", label: "報名資訊" },
   { href: "/courses", label: "課程介紹" },
   { href: "/activities", label: "活動介紹" },
-  { href: "/visit", label: "參訪 & 講座" },
-  { href: "/qa", label: "FAQ" },
+  { href: "/faq", label: "FAQ" },
 ];
 
 export function Header() {

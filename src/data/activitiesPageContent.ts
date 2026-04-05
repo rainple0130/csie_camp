@@ -1,0 +1,131 @@
+/** 活動介紹頁：一般活動、學術活動、參訪與講座（單頁分頁） */
+
+export const activityTabIds = ["general", "academic", "visit"] as const;
+export type ActivityTabId = (typeof activityTabIds)[number];
+
+export function isActivityTabId(v: string | null | undefined): v is ActivityTabId {
+  return activityTabIds.includes(v as ActivityTabId);
+}
+
+export const activityTabs: {
+  id: ActivityTabId;
+  label: string;
+  imageSrc: string;
+  imageAlt: string;
+}[] = [
+  {
+    id: "general",
+    label: "團康活動",
+    imageSrc: "/activities/general.jpg",
+    imageAlt: "團康活動",
+  },
+  {
+    id: "academic",
+    label: "資訊思維",
+    imageSrc: "/activities/academic.jpg",
+    imageAlt: "資訊思維",
+  },
+  {
+    id: "visit",
+    label: "參訪 & 講座",
+    imageSrc: "/activities/visit.jpg",
+    imageAlt: "參訪 & 講座",
+  },
+];
+
+export const generalActivities: { title: string; description: string }[] = [
+  {
+    title: "大地遊戲",
+    description:
+      "透過闖關活動，讓小隊員們在遊戲中培養團隊默契與合作精神。結合校園探索與趣味任務，創造難忘的營隊回憶。",
+  },
+  {
+    title: "賭場",
+    description:
+      "模擬賭場環境的趣味活動，讓小隊員體驗機率與策略的樂趣。在遊戲中學習數學思維，同時享受緊張刺激的競賽氛圍。",
+  },
+  {
+    title: "密室逃脫",
+    description:
+      "考驗邏輯推理與團隊合作能力的密室解謎活動。小隊員需要運用觀察力與創意思維，破解謎題並成功逃脫。",
+  },
+  {
+    title: "智慧鐵人",
+    description:
+      "結合體能與智力的綜合競賽，挑戰小隊員的極限。透過多元關卡設計，培養解決問題的能力與團隊向心力。",
+  },
+  {
+    title: "RPG",
+    description:
+      "小隊員將在活動中扮演不同的角色，推進故事情節進行，做出不同的選擇決定世界的走向。",
+  },
+];
+
+export const academicActivities: { title: string; description: string }[] = [
+  {
+    title: "🔢算法大地🔢",
+    description:
+      "寫程式不只需要掌握基礎的語法，更需要優雅的「演算法」才能既快速又正確地解決複雜問題。\n在算法大地中，小隊員們將透過團隊合作，發揮創意衝破重重關卡。在關主們的引導下，你們將認識各種演算法如何幫助你做出最佳的決策，感受邏輯思考的魅力！",
+  },
+  {
+    title: "🤖圖靈測試🤖",
+    description:
+    "我們正處於人工智慧急速崛起的時代，學會如何駕馭 AI 已成為核心競爭力。\n在 AI 大地中，小隊員們將與 AI 攜手合作，參與多款有趣的小遊戲。透過與模型的互動，你們將學習如何精準地下達指令，解放 AI 的強大力量，並在娛樂中探索未來科技的無限可能。",
+  },
+  {
+    title: "🎲賽局🎲",
+    description:
+      "這是一場關於心理戰的巔峰對決！當個人利益與團體利益衝突時，你會選擇合作還是背叛？\n在賽局活動中，小隊需要憑藉手上僅有的片段資訊，預判並反制對手們的行動。透過一系列精彩的互動遊戲，你們將學會在變幻莫測的局勢中，做出最理智的決定。",
+  },
+];
+
+export type VisitSectionBlock =
+  | { type: "placeholder"; text: string }
+  | { type: "card"; title: string; description: string; imageSrc: string };
+
+export type VisitSection = {
+  emoji: string;
+  title: string;
+  blocks: VisitSectionBlock[];
+};
+
+export const visitSections: VisitSection[] = [
+  {
+    emoji: "🏢",
+    title: "企業參訪",
+    blocks: [
+      {
+        type: "card",
+        title: "Google",
+        description:
+          "參訪 Google 台灣辦公室，了解國際科技公司的企業文化與工作環境。透過實地參訪，讓小隊員親身體驗頂尖科技公司的創新氛圍，並與工程師交流，了解資訊產業的職涯發展與工作內容。",
+        imageSrc: "/activities/tpke.jpg",
+      },
+      { type: "placeholder", text: "敬請期待" },
+    ],
+  },
+  {
+    emoji: "🎓",
+    title: "教授講座",
+    blocks: [
+      { type: "card",
+        title: "林軒田教授",
+        description: "敬請期待",
+        imageSrc: "/activities/prof_ht.png"
+      },
+      { type: "card",
+        title: "李宏毅教授",
+        description: "敬請期待",
+        imageSrc: "/activities/prof_lee.png"
+      },
+      { type: "placeholder", text: "敬請期待" },
+    ],
+  },
+  {
+    emoji: "💼",
+    title: "職人講座",
+    blocks: [
+      { type: "placeholder", text: "敬請期待" },
+    ],
+  },
+];

@@ -11,7 +11,6 @@ export default function CoursesPage() {
           imageSrc="/courses/python.png"
           imageAlt="課程簡介"
           imageSide="left"
-          emoji="📕"
           title="課程簡介"
         >
           <p>
@@ -25,7 +24,6 @@ export default function CoursesPage() {
           imageSrc="/courses/teaching.jpg"
           imageAlt="課程內容"
           imageSide="right"
-          emoji="📗"
           title="課程內容"
         >
           <p>
@@ -38,7 +36,6 @@ export default function CoursesPage() {
           imageSrc="/courses/ta.jpg"
           imageAlt="實作與遊戲主題課程"
           imageSide="left"
-          emoji="📘"
           title="教學方式"
         >
           <p>
@@ -60,7 +57,6 @@ export default function CoursesPage() {
           imageSrc="/courses/challenge.jpg"
           imageAlt="Challenge 活動實作"
           imageSide="right"
-          emoji="📙"
           title="Challenge 活動"
         >
           <p>

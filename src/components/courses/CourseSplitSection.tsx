@@ -7,7 +7,6 @@ type CourseSplitSectionProps = {
   imageAlt: string;
   /** 寬度 ≥ sm 時圖在左或右；未滿 sm 時直向、圖在上 */
   imageSide: "left" | "right";
-  emoji: string;
   title: string;
   children: ReactNode;
   /** 套在外層 section，例如限制整卡高度：`max-h-[28rem] flex flex-col` 並搭配內文區 scroll */
@@ -32,7 +31,6 @@ export function CourseSplitSection({
   imageSrc,
   imageAlt,
   imageSide,
-  emoji,
   title,
   children,
   className,
@@ -45,7 +43,7 @@ export function CourseSplitSection({
   const fixedImageHeight = imageHeightClassName != null && imageHeightClassName !== "";
 
   const clipClasses = isLeft
-    ? "[clip-path:polygon(0_0,100%_0,100%_100%,0_92%)] sm:[clip-path:polygon(0_0,100%_0,76%_100%,0_100%)]"
+    ? "[clip-path:polygon(0_0,100%_0,100%_100%,0_92%)] sm:[clip-path:polygon(0_0,76%_0,100%_100%,0_100%)]"
     : "[clip-path:polygon(0_0,100%_0,100%_100%,0_92%)] sm:[clip-path:polygon(24%_0,100%_0,100%_100%,0_100%)]";
 
   return (
@@ -79,12 +77,7 @@ export function CourseSplitSection({
               : `sm:-mr-[12%] sm:pr-[14%] ${styles.contentRight}`
           } ${contentClassName ?? ""}`}
         >
-          <div className="flex items-center gap-3">
-            <span className="text-3xl" aria-hidden>
-              {emoji}
-            </span>
-            <h2 className="text-2xl font-bold text-aqua">{title}</h2>
-          </div>
+          <h2 className="text-2xl font-bold text-aqua">{title}</h2>
           <div className="mt-4 text-base leading-relaxed text-gray sm:text-lg">
             {children}
           </div>
