@@ -169,18 +169,14 @@ export function ActivitiesTabs() {
             </p>
             <div className="space-y-10">
               {visitSections.map((section, sIdx) => {
-                const sectionFallbackImage: Record<string, string> = {
-                  企業參訪: "/photos/leader.jpg",
-                  教授講座: "/courses/teaching.jpg",
-                  職人講座: "/courses/challenge.jpg",
-                };
+                const defaultImage = "/background.png";
                 const currentIndex = visitIndices[sIdx] ?? 0;
                 const total = section.blocks.length;
                 const current = section.blocks[currentIndex];
                 const imgSrc =
                   current.type === "card"
                     ? current.imageSrc
-                    : sectionFallbackImage[section.title] ?? "/photos/leader.jpg";
+                    : defaultImage;
 
                 const goPrev = () => {
                   setVisitIndices((prev) => {
@@ -210,7 +206,7 @@ export function ActivitiesTabs() {
                     <div className="invisible fixed -left-[10000px] top-0 w-screen max-w-[1200px] opacity-0 pointer-events-none">
                       {section.blocks.map((b, i) => {
                         const measureImg =
-                          b.type === "card" ? b.imageSrc : sectionFallbackImage[section.title] ?? "/photos/leader.jpg";
+                          b.type === "card" ? b.imageSrc : defaultImage;
                         return (
                           <div
                             key={`m-${i}`}
@@ -222,15 +218,15 @@ export function ActivitiesTabs() {
                               imageSrc={measureImg}
                               imageAlt={section.title}
                               imageSide="left"
-                              title={b.type === "card" ? b.title : section.title}
+                              title={b.type === "card" ? b.title : "More?"}
                               imageColumnWidth="34%"
                               contentClassName="visit-measure-content"
                             >
                               {b.type === "card" ? (
                                 <p className="whitespace-pre-line">{b.description}</p>
                               ) : (
-                                <div className="flex min-h-[6rem] items-center justify-center">
-                                  <p className="text-lg font-bold text-aqua">{b.text}</p>
+                                <div className="whitespace-pre-line">
+                                  <p className="text-lg font-bold text-aqua">Coming Soon</p>  
                                 </div>
                               )}
                             </CourseSplitSection>
@@ -265,7 +261,7 @@ export function ActivitiesTabs() {
                           imageSrc={imgSrc}
                           imageAlt={section.title}
                           imageSide="left"
-                          title={current.type === "card" ? current.title : section.title}
+                          title={current.type === "card" ? current.title : "More?"}
                           imageColumnWidth="34%"
                           contentClassName="min-w-0"
                         >
@@ -274,8 +270,8 @@ export function ActivitiesTabs() {
                               {current.description}
                             </p>
                           ) : (
-                            <div className="flex min-h-[6rem] items-center justify-center">
-                              <p className="text-lg font-bold text-aqua">{current.text}</p>
+                            <div className="whitespace-pre-line">
+                              <p className="text-lg font-bold text-aqua">Coming Soon</p>
                             </div>
                           )}
                         </CourseSplitSection>

@@ -80,7 +80,7 @@ export const academicActivities: { title: string; description: string }[] = [
 ];
 
 export type VisitSectionBlock =
-  | { type: "placeholder"; text: string }
+  | { type: "placeholder"}
   | { type: "card"; title: string; description: string; imageSrc: string };
 
 export type VisitSection = {
@@ -101,7 +101,7 @@ export const visitSections: VisitSection[] = [
           "參訪 Google 台灣辦公室，了解國際科技公司的企業文化與工作環境。透過實地參訪，讓小隊員親身體驗頂尖科技公司的創新氛圍，並與工程師交流，了解資訊產業的職涯發展與工作內容。",
         imageSrc: "/activities/tpke.jpg",
       },
-      { type: "placeholder", text: "敬請期待" },
+      { type: "placeholder"},
     ],
   },
   {
@@ -118,14 +118,14 @@ export const visitSections: VisitSection[] = [
         description: "敬請期待",
         imageSrc: "/activities/prof_lee.png"
       },
-      { type: "placeholder", text: "敬請期待" },
+      { type: "placeholder"},
     ],
   },
   {
     emoji: "💼",
     title: "職人講座",
     blocks: [
-      { type: "placeholder", text: "敬請期待" },
+      { type: "placeholder"},
     ],
   },
 ];

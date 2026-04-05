@@ -34,7 +34,7 @@ export default function Home() {
       <section
         className="relative lg:bg-[length:70%_auto] bg-[length:90%_auto] sm:bg-right bg-center bg-fixed bg-no-repeat"
         style={{
-          backgroundImage: `url(${getAssetPath("/background2.png")})`,
+          backgroundImage: `url(${getAssetPath("/background.png")})`,
         }}
       >
         <div className="relative z-10 flex min-h-screen max-w-2xl flex-col justify-center px-4 sm:pt-0 pt-20">
