@@ -153,7 +153,7 @@ export default function Home() {
                 報名流程
               </Link>
               <Link
-                href="/qa"
+                href="/faq"
                 className="rounded-full bg-aqua/30 px-4 py-2 text-gray transition-colors hover:bg-aqua/50"
               >
                 常見問題 FAQ
