@@ -13,13 +13,22 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "baseUrl": "src",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"],
+      "@app/*": ["app/*"],
+      "@components/*": ["components/*"],
+      "@components": ["components/index.ts"],
+      "@data/*": ["data/*"],
+      "@data": ["data/index.ts"],
+      "@utils/*": ["utils/*"],
+      "@lib/*": ["lib/*"],
+      "@features/*": ["features/*"]
     }
   },
   "include": [

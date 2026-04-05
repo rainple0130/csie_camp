@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { campDates } from "../../data/dates";
-import { campInfo } from "../../data/campInfo";
+import { campDates } from "@data/dates";
+import { campInfo } from "@data/campInfo";
 
 type TimelinePhase = "before" | "apply" | "review" | "announce" | "payment" | "after";
 

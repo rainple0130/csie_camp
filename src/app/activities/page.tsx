@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { ActivitiesTabs } from "../../components/activities/ActivitiesTabs";
+import { ActivitiesTabs } from "@components/activities";
 
 export default function ActivitiesPage() {
   return (

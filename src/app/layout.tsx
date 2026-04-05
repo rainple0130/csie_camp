@@ -1,11 +1,24 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
+import { Header } from "@components/layout/Header";
+import { Footer } from "@components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "2026 臺大資訊營",
+  title: {
+    default: "2026 臺大資訊營",
+    template: "%s · 2026 臺大資訊營",
+  },
   description: "Code Code Nut",
+  metadataBase: typeof window === "undefined" ? new URL("https://ntucsiecamp.github.io") : undefined,
+  openGraph: {
+    title: "2026 臺大資訊營",
+    description: "Code Code Nut",
+    type: "website",
+    url: "https://ntucsiecamp.github.io",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

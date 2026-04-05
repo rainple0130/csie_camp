@@ -11,9 +11,10 @@ import {
   isActivityTabId,
   visitSections,
   type ActivityTabId,
-} from "../../data/activitiesPageContent";
-import { getAssetPath } from "../../utils/path";
-import { CourseSplitSection } from "../courses/CourseSplitSection";
+} from "@data/activitiesPageContent";
+import { getAssetPath } from "@utils/path";
+import { CourseSplitSection } from "@components/courses";
+import { Card, SectionHeader, IconCircleButton } from "@components/common";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 const tabParam = "tab";
@@ -131,15 +132,11 @@ export function ActivitiesTabs() {
             </p>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {generalActivities.map((activity, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl bg-white/50 p-6 shadow-md transition-all duration-300 hover:shadow-lg"
-                >
-                  <h2 className="text-xl font-bold text-aqua">{activity.title}</h2>
-                  <p className="mt-3 text-base leading-relaxed text-gray">
+                <Card key={index} title={activity.title}>
+                  <p className="text-base leading-relaxed text-gray">
                     {activity.description}
                   </p>
-                </div>
+                </Card>
               ))}
             </div>
           </TabPanel>
@@ -150,15 +147,11 @@ export function ActivitiesTabs() {
             </p>
             <div className="grid gap-6 sm:px-10 lg:grid-cols-3 lg:px-0">
               {academicActivities.map((item, index) => (
-                <div
-                  key={index}
-                  className="rounded-2xl bg-white/50 p-6 shadow-md transition-all duration-300 hover:shadow-lg"
-                >
-                  <h2 className="text-xl font-bold text-aqua">{item.title}</h2>
-                  <p className="mt-3 text-base leading-relaxed text-gray">
+                <Card key={index} title={item.title}>
+                  <p className="text-base leading-relaxed text-gray">
                     {item.description}
                   </p>
-                </div>
+                </Card>
               ))}
             </div>
           </TabPanel>
@@ -195,12 +188,7 @@ export function ActivitiesTabs() {
 
                 return (
                   <div key={section.title} className="relative">
-                    <div className="mb-3 flex items-center gap-3 px-1">
-                      <span className="text-3xl" aria-hidden>
-                        {section.emoji}
-                      </span>
-                      <h2 className="text-2xl font-bold text-aqua">{section.title}</h2>
-                    </div>
+                    <SectionHeader emoji={section.emoji} title={section.title} />
 
                     {/* 隱藏量測：渲染本分類所有卡片以取得最大高度（離開版面以避免任何重疊/佔位） */}
                     <div className="invisible fixed -left-[10000px] top-0 w-screen max-w-[1200px] opacity-0 pointer-events-none">
@@ -236,18 +224,13 @@ export function ActivitiesTabs() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <button
-                        type="button"
+                      <IconCircleButton
                         aria-label={`${section.title} 上一則`}
                         onClick={goPrev}
-                        className={`inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-aqua/50 text-white shadow-md transition hover:bg-aqua ${
-                          total > 1 ? "" : "opacity-0 pointer-events-none"
-                        }`}
-                        aria-hidden={total <= 1}
-                        tabIndex={total > 1 ? 0 : -1}
+                        disabled={total <= 1}
                       >
                         <LuChevronLeft className="h-6 w-6" aria-hidden />
-                      </button>
+                      </IconCircleButton>
 
                       <div
                         className="relative min-w-0 flex-1"
@@ -293,18 +276,13 @@ export function ActivitiesTabs() {
                         )}
                       </div>
 
-                      <button
-                        type="button"
+                      <IconCircleButton
                         aria-label={`${section.title} 下一則`}
                         onClick={goNext}
-                        className={`inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-aqua/50 text-white shadow-md transition hover:bg-aqua ${
-                          total > 1 ? "" : "opacity-0 pointer-events-none"
-                        }`}
-                        aria-hidden={total <= 1}
-                        tabIndex={total > 1 ? 0 : -1}
+                        disabled={total <= 1}
                       >
                         <LuChevronRight className="h-6 w-6" aria-hidden />
-                      </button>
+                      </IconCircleButton>
                     </div>
 
                     {total > 1 ? null : <div className="h-2" aria-hidden />}

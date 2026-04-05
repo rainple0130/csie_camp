@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { getAssetPath } from "../../utils/path";
+import { getAssetPath } from "@utils/path";
 import styles from "./CourseSplitSection.module.css";
 
 type CourseSplitSectionProps = {

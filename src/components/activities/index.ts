@@ -1,0 +1,2 @@
+export { ActivitiesTabs } from "./ActivitiesTabs";
+

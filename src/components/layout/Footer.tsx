@@ -1,4 +1,4 @@
-import { campInfo } from "../../data/campInfo";
+import { campInfo } from "@data/campInfo";
 import { FaInstagram } from "react-icons/fa";
 import { RiFacebookFill } from "react-icons/ri";
 import { MdOutlineEmail } from "react-icons/md";

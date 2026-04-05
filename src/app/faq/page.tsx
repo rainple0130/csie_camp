@@ -1,4 +1,4 @@
-import { campInfo } from "../../data/campInfo";
+import { campInfo } from "@data/campInfo";
 
 const faqCategories = [
   {

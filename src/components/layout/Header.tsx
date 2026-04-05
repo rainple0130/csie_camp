@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { campInfo } from "../../data/campInfo";
+import { campInfo } from "@data/campInfo";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const navItems = [

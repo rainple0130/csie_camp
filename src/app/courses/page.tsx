@@ -1,4 +1,4 @@
-import { CourseSplitSection } from "../../components/courses/CourseSplitSection";
+import { CourseSplitSection } from "@components/courses";
 
 export default function CoursesPage() {
   return (

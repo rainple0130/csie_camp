@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { campInfo } from "../data/campInfo";
-import { campDates } from "../data/dates";
-import { getAssetPath } from "../utils/path";
+import { campInfo } from "@data/campInfo";
+import { campDates } from "@data/dates";
+import { getAssetPath } from "@utils/path";
 
 const highlightPhotos = [
   { src: "/photos/lucky.jpg", alt: "歷屆營隊花絮 1" },
