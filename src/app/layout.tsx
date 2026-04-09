@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     template: "%s · 2026 臺大資訊營",
   },
   description: "Code Code Nut",
+  verification: {
+    google: "WTpVLpeMrKmQ_FlcfDPD5TtP8k5hDzvsUzsIbXb30eg",
+  },
   metadataBase: typeof window === "undefined" ? new URL("https://csiecamp.csie.org") : undefined,
   openGraph: {
     title: "2026 臺大資訊營",
