@@ -15,9 +15,9 @@ export const activityTabs: {
 }[] = [
   {
     id: "general",
-    label: "團康活動",
+    label: "闖關遊戲",
     imageSrc: "/activities/general.jpg",
-    imageAlt: "團康活動",
+    imageAlt: "闖關遊戲",
   },
   {
     id: "academic",

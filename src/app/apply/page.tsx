@@ -40,7 +40,7 @@ export default function ApplyPage() {
         stepIndex = 1; // 報名開始已完成
 
         // 計算剩餘時間
-        const remaining = applyEnd.getTime() - now.getTime();
+        const remaining = applyEnd.getTime() - now.getTime() + 1000 * 60 * 60 * 24;
         setTimeRemaining({
           days: Math.floor(remaining / (1000 * 60 * 60 * 24)),
           hours: Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
