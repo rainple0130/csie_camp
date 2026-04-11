@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { Header } from "@components/layout/Header";
 import { Footer } from "@components/layout/Footer";
@@ -36,20 +35,19 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant">
       <head>
+        {GA_MEASUREMENT_ID ? (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA_MEASUREMENT_ID}');`,
+              }}
+            />
+          </>
+        ) : null}
         <link rel="icon" href={getAssetPath("/favicon.ico")}/>
       </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
-        {GA_MEASUREMENT_ID ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GA_MEASUREMENT_ID}');`}
-            </Script>
-          </>
-        ) : null}
         <div className="flex min-h-screen flex-col">
           <Header />
           <main className="flex-1 bg-sky">{children}</main>
