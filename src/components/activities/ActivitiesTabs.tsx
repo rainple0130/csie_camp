@@ -12,6 +12,7 @@ import {
   visitSections,
   type ActivityTabId,
 } from "@data/activitiesPageContent";
+import { trackEvent } from "@utils/analytics";
 import { getAssetPath } from "@utils/path";
 import { CourseSplitSection } from "@components/courses";
 import { Card, SectionHeader, IconCircleButton } from "@components/common";
@@ -43,12 +44,17 @@ export function ActivitiesTabs() {
 
   const setTab = useCallback(
     (id: ActivityTabId) => {
+      if (id !== activeTab) {
+        trackEvent("activities_tab_click", {
+          tab_id: id,
+        });
+      }
       setActiveTab(id);
       const next = new URLSearchParams(searchParams.toString());
       next.set(tabParam, id);
       router.replace(`${pathname}?${next.toString()}`, { scroll: false });
     },
-    [pathname, router, searchParams],
+    [activeTab, pathname, router, searchParams],
   );
 
   useEffect(() => {

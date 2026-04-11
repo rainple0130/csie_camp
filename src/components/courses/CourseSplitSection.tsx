@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { getAssetPath } from "@utils/path";
 import styles from "./CourseSplitSection.module.css";
 
@@ -63,10 +64,13 @@ export function CourseSplitSection({
               : "sm:h-full sm:self-stretch"
           } ${!isLeft ? styles.imageRight : ""} ${clipClasses} ${imageColumnClassName ?? ""}`}
         >
-          <img
+          <Image
             src={getAssetPath(imageSrc)}
             alt={imageAlt}
-            className="h-full w-full object-cover object-center"
+            fill
+            className="object-cover object-center"
+            sizes="(max-width: 640px) 100vw, 34vw"
+            loading="lazy"
           />
         </div>
 

@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { Header } from "@components/layout/Header";
 import { Footer } from "@components/layout/Footer";
+import { getAssetPath } from "@/utils/path";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -34,6 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-Hant">
+      <head>
+        <link rel="icon" href={getAssetPath("/favicon.ico")}/>
+      </head>
       <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
         {GA_MEASUREMENT_ID ? (
           <>

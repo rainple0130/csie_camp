@@ -1,9 +1,11 @@
  "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { campInfo } from "@data/campInfo";
 import { campDates } from "@data/dates";
+import { trackEvent } from "@utils/analytics";
 import { getAssetPath } from "@utils/path";
 
 const highlightPhotos = [
@@ -38,12 +40,21 @@ export default function Home() {
         }}
       >
         <div className="relative z-10 flex min-h-screen max-w-2xl flex-col justify-center px-4 sm:pt-0 pt-20">
-          <img src={getAssetPath("/title.png")} alt="Title" className="w-3/4 sm:w-3/4 md:w-7/8" />
+          <Image
+            src={getAssetPath("/title.png")}
+            alt="Title"
+            width={900}
+            height={300}
+            className="w-3/4 sm:w-3/4 md:w-7/8 h-auto"
+            priority
+            sizes="(max-width: 640px) 75vw, (max-width: 768px) 75vw, 55vw"
+          />
           <p className="ml-5 sm:ml-10 text:md xs:text-xl sm:text-2xl font-bold text-gray sm:-translate-y-10 -translate-y-5">
             {campInfo.period}
           </p>
           <Link
             href={campInfo.formUrl}
+            onClick={() => trackEvent("apply_click", { source: "home_hero" })}
             className="rounded-10 bg-aqua ml-10 mr-auto px-4 py-2.5 text:md xs:text-xl sm:text-2xl font-bold text-gray shadow-md transition-all duration-300 ease-out hover:scale-105 hover:bg-orange hover:text-white"
           >
             立刻報名
@@ -56,23 +67,16 @@ export default function Home() {
               {/* 左：歷年花絮簡易輪播 */}
               <div className="space-y-3">
                 <div className="relative overflow-hidden rounded-2xl bg-silver/10">
-                  <div className="aspect-video w-full">
-                    {highlightPhotos.map((photo, index) => (
-                      <div
-                        key={photo.src + index}
-                        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${
-                          index === photoIndex ? "opacity-100" : "opacity-0"
-                        }`}
-                      >
-                        {/* 可以換成 next/image，如果之後有實際照片 */}
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={getAssetPath(photo.src)}
-                          alt={photo.alt}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                    ))}
+                  <div className="relative aspect-video w-full">
+                    <Image
+                      key={currentPhoto.src}
+                      src={getAssetPath(currentPhoto.src)}
+                      alt={currentPhoto.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 92vw, 50vw"
+                      priority={photoIndex === 0}
+                    />
                   </div>
                   <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
                     {highlightPhotos.map((_, index) => (
@@ -136,24 +140,52 @@ export default function Home() {
               </p>
               <Link
                 href="/activities"
+                onClick={() =>
+                  trackEvent("navigation_click", {
+                    label: "活動介紹",
+                    href: "/activities",
+                    position: "home_shortcuts",
+                  })
+                }
                 className="rounded-full bg-aqua/30 px-4 py-2 text-gray transition-colors hover:bg-aqua/50"
               >
                 活動介紹
               </Link>
               <Link
                 href="/courses"
+                onClick={() =>
+                  trackEvent("navigation_click", {
+                    label: "課程介紹",
+                    href: "/courses",
+                    position: "home_shortcuts",
+                  })
+                }
                 className="rounded-full bg-aqua/30 px-4 py-2 text-gray transition-colors hover:bg-aqua/50"
               >
                 課程介紹
               </Link>
               <Link
                 href="/apply"
+                onClick={() =>
+                  trackEvent("navigation_click", {
+                    label: "報名流程",
+                    href: "/apply",
+                    position: "home_shortcuts",
+                  })
+                }
                 className="rounded-full bg-aqua/30 px-4 py-2 text-gray transition-colors hover:bg-aqua/50"
               >
                 報名流程
               </Link>
               <Link
                 href="/faq"
+                onClick={() =>
+                  trackEvent("navigation_click", {
+                    label: "常見問題 FAQ",
+                    href: "/faq",
+                    position: "home_shortcuts",
+                  })
+                }
                 className="rounded-full bg-aqua/30 px-4 py-2 text-gray transition-colors hover:bg-aqua/50"
               >
                 常見問題 FAQ

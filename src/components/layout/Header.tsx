@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { campInfo } from "@data/campInfo";
+import { trackEvent } from "@utils/analytics";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const navItems = [
@@ -17,6 +18,20 @@ export function Header() {
 
   const close = () => setOpen(false);
 
+  const handleNavClick = (label: string, href: string, position: "header_desktop" | "header_mobile") => {
+    trackEvent("navigation_click", {
+      label,
+      href,
+      position,
+    });
+  };
+
+  const handleApplyClick = (position: "header_desktop" | "header_mobile") => {
+    trackEvent("apply_click", {
+      source: position,
+    });
+  };
+
   return (
     <header className="relative z-40 bg-gray backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
@@ -24,7 +39,10 @@ export function Header() {
         <Link
           href="/"
           className="text-lg font-semibold tracking-tight text-ivory lg:text-xl"
-          onClick={close}
+          onClick={() => {
+            close();
+            handleNavClick("首頁", "/", "header_desktop");
+          }}
         >
           {campInfo.title} - {campInfo.name}
         </Link>
@@ -35,6 +53,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => handleNavClick(item.label, item.href, "header_desktop")}
               className="relative text-md text-ivory transition-all duration-300 ease-in-out hover:font-bold hover:text-aqua
                 after:absolute after:-bottom-0.5 after:left-0 after:h-[3px] after:w-0 after:bg-aqua after:transition-all after:duration-300 after:ease-in-out hover:after:w-full"
             >
@@ -43,6 +62,7 @@ export function Header() {
           ))}
           <Link
             href={campInfo.formUrl}
+            onClick={() => handleApplyClick("header_desktop")}
             className="rounded-md bg-aqua px-4 py-1.5 text-md font-bold text-gray transition-all duration-300 ease-in-out hover:scale-105 hover:bg-orange hover:text-white"
           >
             前往報名
@@ -68,7 +88,10 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={close}
+                onClick={() => {
+                  close();
+                  handleNavClick(item.label, item.href, "header_mobile");
+                }}
                 className="rounded-md px-2 py-2 transition-colors hover:bg-ivory/10"
               >
                 {item.label}
@@ -76,7 +99,10 @@ export function Header() {
             ))}
             <Link
               href={campInfo.formUrl}
-              onClick={close}
+              onClick={() => {
+                close();
+                handleApplyClick("header_mobile");
+              }}
               className="mt-2 rounded-md bg-aqua px-3 py-2 text-center text-sm font-bold text-white"
             >
               前往報名
