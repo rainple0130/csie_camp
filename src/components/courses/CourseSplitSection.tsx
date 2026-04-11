@@ -49,16 +49,16 @@ export function CourseSplitSection({
 
   return (
     <section
-      className={`mt-8 overflow-hidden rounded-2xl bg-white/50 shadow-md ${className ?? ""}`}
+      className={`mt-8 h-full overflow-hidden rounded-2xl bg-white/50 shadow-md ${className ?? ""}`}
       style={{ ["--split-img-col" as string]: imageColumnWidth }}
     >
       <div
-        className={`${styles.row} min-h-0 ${
+        className={`${styles.row} h-full min-h-0 ${
           isLeft ? styles.rowLeft : styles.rowRight
         }`}
       >
         <div
-          className={`${styles.imageCell} isolate min-h-0 sm:min-h-0 max-sm:h-60 ${
+          className={`${styles.imageCell} isolate h-full min-h-0 sm:min-h-0 max-sm:h-60 ${
             fixedImageHeight
               ? `sm:self-center ${imageHeightClassName ?? ""}`
               : "sm:h-full sm:self-stretch"
@@ -75,7 +75,7 @@ export function CourseSplitSection({
         </div>
 
         <div
-          className={`min-w-0 flex flex-1 flex-col justify-center px-6 py-6 sm:px-8 sm:py-8 ${
+          className={`min-w-0 flex h-full flex-1 flex-col justify-center px-6 py-6 sm:self-stretch sm:px-8 sm:py-8 ${
             isLeft
               ? "sm:-ml-[12%] sm:pl-[14%]"
               : `sm:-mr-[12%] sm:pr-[14%] ${styles.contentRight}`

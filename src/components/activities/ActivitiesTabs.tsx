@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   activityTabs,
@@ -37,6 +37,7 @@ export function ActivitiesTabs() {
   const [sectionHeights, setSectionHeights] = useState<number[]>(
     () => visitSections.map(() => 0),
   );
+  const measureRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useEffect(() => {
     setActiveTab(initialTab);
@@ -58,27 +59,34 @@ export function ActivitiesTabs() {
   );
 
   useEffect(() => {
+    if (activeTab !== "visit") return;
+
     const computeHeights = () => {
-      const nextHeights = visitSections.map((section) => {
-        // 僅量測內容欄高度，圖片高度將自動隨 Grid 列高等同於內容欄
-        const contentNodes = Array.from(
-          document.querySelectorAll<HTMLElement>(
-            `[data-section="${section.title}"][data-measure="1"] .visit-measure-content`,
-          ),
-        );
-        const maxContent = contentNodes.reduce(
-          (acc, el) => Math.max(acc, el.offsetHeight),
-          0,
-        );
-        return maxContent;
+      const next = visitSections.map((_, idx) => {
+        const node = measureRefs.current[idx];
+        return node?.offsetHeight ?? 0;
       });
-      setSectionHeights(nextHeights);
+      setSectionHeights(next);
     };
-    // 初次與視窗調整時重算
+
+    // 切入 visit 分頁與圖片完成版面配置後都重算，避免高度被初始化為 0
     computeHeights();
+    const rafId = window.requestAnimationFrame(computeHeights);
+    const timeoutId = window.setTimeout(computeHeights, 250);
+
+    const observer = new ResizeObserver(() => computeHeights());
+    measureRefs.current.forEach((node) => {
+      if (node) observer.observe(node);
+    });
+
     window.addEventListener("resize", computeHeights);
-    return () => window.removeEventListener("resize", computeHeights);
-  }, []);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.clearTimeout(timeoutId);
+      observer.disconnect();
+      window.removeEventListener("resize", computeHeights);
+    };
+  }, [activeTab]);
 
   return (
     <div className="min-h-screen bg-ivory text-gray">
@@ -138,7 +146,7 @@ export function ActivitiesTabs() {
             </p>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {generalActivities.map((activity, index) => (
-                <Card key={index} title={activity.title}>
+                <Card key={index} title={activity.title} className="h-full">
                   <p className="text-base leading-relaxed text-gray">
                     {activity.description}
                   </p>
@@ -153,7 +161,7 @@ export function ActivitiesTabs() {
             </p>
             <div className="grid gap-6 sm:px-10 lg:grid-cols-3 lg:px-0">
               {academicActivities.map((item, index) => (
-                <Card key={index} title={item.title}>
+                <Card key={index} title={item.title} className="h-full">
                   <p className="text-base leading-relaxed text-gray">
                     {item.description}
                   </p>
@@ -177,6 +185,23 @@ export function ActivitiesTabs() {
                     ? current.imageSrc
                     : defaultImage;
 
+                const templateBlock = section.blocks.reduce((best, block) => {
+                  const bestLength =
+                    best.type === "card"
+                      ? best.title.length + best.description.length + (best.siteUrl?.length ?? 0)
+                      : 0;
+                  const blockLength =
+                    block.type === "card"
+                      ? block.title.length + block.description.length + (block.siteUrl?.length ?? 0)
+                      : 0;
+                  return blockLength > bestLength ? block : best;
+                }, section.blocks[0]);
+
+                const templateImgSrc =
+                  templateBlock.type === "card"
+                    ? templateBlock.imageSrc
+                    : defaultImage;
+
                 const goPrev = () => {
                   setVisitIndices((prev) => {
                     const next = prev.slice();
@@ -196,44 +221,38 @@ export function ActivitiesTabs() {
                   <div key={section.title} className="relative">
                     <SectionHeader emoji={section.emoji} title={section.title} />
 
-                    {/* 隱藏量測：渲染本分類所有卡片以取得最大高度（離開版面以避免任何重疊/佔位） */}
-                    <div className="invisible fixed -left-[10000px] top-0 w-screen max-w-[1200px] opacity-0 pointer-events-none">
-                      {section.blocks.map((b, i) => {
-                        const measureImg =
-                          b.type === "card" ? b.imageSrc : defaultImage;
-                        return (
-                          <div
-                            key={`m-${i}`}
-                            data-section={section.title}
-                            data-measure="1"
-                            className="mb-4"
-                          >
-                            <CourseSplitSection
-                              imageSrc={measureImg}
-                              imageAlt={section.title}
-                              imageSide="left"
-                              title={b.type === "card" ? b.title : "More?"}
-                              imageColumnWidth="34%"
-                              contentClassName="visit-measure-content"
-                            >
-                              {b.type === "card" ? (
-                                <>
-                                  <p className="whitespace-pre-line">{b.description}</p>
-                                  {b.siteUrl && (
-                                    <a href={b.siteUrl} target="_blank" rel="noopener noreferrer">
-                                      <p className="text-md font-bold text-orange mt-2">個人網站</p>
-                                    </a>
-                                  )}
-                                </>
-                              ) : (
-                                <div className="whitespace-pre-line">
-                                  <p className="text-lg font-bold text-aqua">Coming Soon</p>  
-                                </div>
+                    {/* 以文字最多卡片作為該區塊高度範本（同寬量測，避免左右切換跳動） */}
+                    <div className="pointer-events-none invisible absolute inset-x-0 top-0 -z-10" aria-hidden>
+                      <div
+                        className="pt-8"
+                        ref={(el) => {
+                        measureRefs.current[sIdx] = el;
+                        }}
+                      >
+                        <CourseSplitSection
+                          imageSrc={templateImgSrc}
+                          imageAlt={section.title}
+                          imageSide="left"
+                          title={templateBlock.type === "card" ? templateBlock.title : "More?"}
+                          className="mt-0"
+                          imageColumnWidth="34%"
+                        >
+                          {templateBlock.type === "card" ? (
+                            <>
+                              <p className="whitespace-pre-line">{templateBlock.description}</p>
+                              {templateBlock.siteUrl && (
+                                <a href={templateBlock.siteUrl} target="_blank" rel="noopener noreferrer">
+                                  <p className="text-md font-bold text-orange mt-2">個人網站</p>
+                                </a>
                               )}
-                            </CourseSplitSection>
-                          </div>
-                        );
-                      })}
+                            </>
+                          ) : (
+                            <div className="whitespace-pre-line">
+                              <p className="text-lg font-bold text-aqua">Coming Soon</p>
+                            </div>
+                          )}
+                        </CourseSplitSection>
+                      </div>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -246,10 +265,10 @@ export function ActivitiesTabs() {
                       </IconCircleButton>
 
                       <div
-                        className="relative min-w-0 flex-1"
+                        className="relative min-w-0 flex-1 pt-8"
                         style={
                           sectionHeights[sIdx] > 0
-                            ? { minHeight: `${sectionHeights[sIdx]}px` }
+                            ? { height: `${sectionHeights[sIdx]}px` }
                             : undefined
                         }
                       >
@@ -258,8 +277,9 @@ export function ActivitiesTabs() {
                           imageAlt={section.title}
                           imageSide="left"
                           title={current.type === "card" ? current.title : "More?"}
+                          className="mt-0 h-full"
                           imageColumnWidth="34%"
-                          contentClassName="min-w-0"
+                          contentClassName="min-w-0 h-full sm:justify-start"
                         >
                           {current.type === "card" ? (
                             <>
