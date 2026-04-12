@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { campInfo } from "@data/campInfo";
+
+export const metadata: Metadata = {
+  title: "常見問題",
+  description:
+    "整理 2026 臺大資訊營常見問題，包含報名、課程、住宿與繳費資訊，快速找到參加前需要知道的重點。",
+};
 
 const faqCategories = [
   {
@@ -15,6 +22,10 @@ const faqCategories = [
         answer:
           "生活照的部分主要是方便同學們錄取能後讓隊輔哥哥姊姊能及早認識你們，才不會營隊開始時認不出自己的小隊員！臉書連結則是為了方便聯絡和創立小隊群組，過去幾年的經驗讓我們覺得各位同學都太難聯絡到了啊！",
       },
+      {
+        question: "臺大資訊營是臺大資工系學生辦的嗎？",
+        answer: "是的！臺大資訊營（台大資訊營）就是臺大資工（台大資工）學生辦的營隊喔！",
+      }
     ],
   },
   {
@@ -29,7 +40,7 @@ const faqCategories = [
       {
         question: "課程內容會上些什麼呢？",
         answer:
-          "目前的規劃是讓大家用 Python 寫出一個遊戲的 AI，在遊戲製作過程中會讓大家同時學會 Python 的語法！",
+          "讓大家用 Python 寫出一個遊戲的 AI，在遊戲製作過程中會讓大家同時學會 Python 的語法！可以參考上方課程介紹頁面，裡面有更詳細的課程內容喔！",
       },
     ],
   },

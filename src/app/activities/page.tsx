@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ActivitiesTabs } from "@components/activities";
+
+export const metadata: Metadata = {
+  title: "活動介紹",
+  description:
+    "查看 2026 臺大資訊營的主題活動與營隊體驗內容，了解每天的安排與精彩亮點。",
+};
 
 export default function ActivitiesPage() {
   return (

@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { CourseSplitSection } from "@components/courses";
+
+export const metadata: Metadata = {
+  title: "課程介紹",
+  description:
+    "2026 臺大資訊營課程內容涵蓋 Python 基礎、實作練習與 Challenge 活動，循序漸進培養資工與程式思維。",
+};
 
 export default function CoursesPage() {
   return (
