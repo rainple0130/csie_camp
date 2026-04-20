@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { campInfo } from "@data/campInfo";
+import { campDates } from "@data/dates";
 import { trackEvent } from "@utils/analytics";
 import { getAssetPath } from "@utils/path";
 
@@ -48,13 +49,16 @@ export function HomePageClient() {
 						priority
 						sizes="(max-width: 640px) 75vw, (max-width: 768px) 75vw, 55vw"
 					/>
-					<p className="ml-5 sm:ml-10 text:md xs:text-xl sm:text-2xl font-bold text-gray sm:-translate-y-10 -translate-y-5">
+					<p className="ml-3 sm:ml-10 text-md md:text-2xl font-bold text-gray sm:-translate-y-10 -translate-y-5">
 						{campInfo.period}
+					</p>
+					<p className="ml-3 sm:ml-10 text-sm md:text-xl text-gray sm:-translate-y-10 -translate-y-5">
+						報名期限：{campDates.applyEnd}
 					</p>
 					<Link
 						href={campInfo.formUrl}
 						onClick={() => trackEvent("apply_click", { source: "home_hero" })}
-						className="rounded-10 bg-aqua ml-10 mr-auto px-4 py-2.5 text:md xs:text-xl sm:text-2xl font-bold text-gray shadow-md transition-all duration-300 ease-out hover:scale-105 hover:bg-orange hover:text-white"
+						className="rounded-10 bg-aqua ml-3 sm:ml-10 mr-auto mt-4 px-4 py-2.5 text:md xs:text-xl sm:text-2xl font-bold text-gray shadow-md transition-all duration-300 ease-out hover:scale-105 hover:bg-orange hover:text-white sm:-translate-y-10 -translate-y-5"
 					>
 						立刻報名
 					</Link>
@@ -99,6 +103,10 @@ export function HomePageClient() {
 									<div className="flex gap-2">
 										<dt className="w-16 shrink-0 font-semibold">日期</dt>
 										{campInfo.period}
+									</div>
+									<div className="flex gap-2">
+										<dt className="w-16 shrink-0 font-semibold">報名</dt>
+										即日起至 {campDates.applyEnd}
 									</div>
 									<div className="flex gap-2">
 										<dt className="w-16 shrink-0  font-semibold">地點</dt>
