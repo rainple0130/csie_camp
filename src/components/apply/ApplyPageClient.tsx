@@ -7,6 +7,11 @@ import { campInfo } from "@data/campInfo";
 
 type TimelinePhase = "before" | "apply" | "review" | "announce" | "payment" | "after";
 
+function parseLocalDate(dateString: string) {
+  const [year, month, day] = dateString.split("/").map(Number);
+  return new Date(year, month - 1, day);
+}
+
 export function ApplyPageClient() {
   const [currentPhase, setCurrentPhase] = useState<TimelinePhase>("before");
   const [progress, setProgress] = useState(0);
@@ -20,9 +25,9 @@ export function ApplyPageClient() {
   useEffect(() => {
     const updateTimeline = () => {
       const now = new Date();
-      const applyStart = new Date(campDates.applyStart);
-      const applyEnd = new Date(campDates.applyEnd);
-      const resultAnnounce = new Date(campDates.resultAnnounce);
+      const applyStart = parseLocalDate(campDates.applyStart);
+      const applyEnd = parseLocalDate(campDates.applyEnd);
+      const resultAnnounce = parseLocalDate(campDates.resultAnnounce);
 
       let phase: TimelinePhase = "before";
       let progressValue = 0;
@@ -40,7 +45,7 @@ export function ApplyPageClient() {
         stepIndex = 1; // 報名開始已完成
 
         // 計算剩餘時間
-        const remaining = applyEnd.getTime() - now.getTime() + 1000 * 60 * 60 * 24;
+        const remaining = applyEnd.getTime() - now.getTime();
         setTimeRemaining({
           days: Math.floor(remaining / (1000 * 60 * 60 * 24)),
           hours: Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -72,7 +77,7 @@ export function ApplyPageClient() {
 
   const timelineSteps = [
     { label: "報名開始", date: campDates.applyStart },
-    { label: "報名截止", date: campDates.applyEnd },
+    { label: "報名截止", date: campDates.applyRealEnd },
     { label: "錄取名單", date: campDates.resultAnnounce },
   ];
 
@@ -89,7 +94,7 @@ export function ApplyPageClient() {
         {/* 橫向進度條 */}
         <div className="mt-10">
           {/* 兩個 session 標籤（在進度條上方） */}
-          <div className="-mb-1.5 mx-10 flex justify-between">
+          <div className="-mb-1.5 grid grid-cols-2 gap-2 px-2 sm:px-10">
             {sessions.map((session, index) => {
               // 根據 currentStepIndex 判斷 session 是否活躍
               // index 0 (開放報名): stepIndex >= 1 (報名開始後)
@@ -103,7 +108,6 @@ export function ApplyPageClient() {
                 <div
                   key={session.label}
                   className="flex-1 text-center"
-                  style={{ marginLeft: index > 0 ? "8.33%" : 0 }}
                 >
                   <p
                     className={`text-xl font-bold transition-all ${
@@ -119,16 +123,16 @@ export function ApplyPageClient() {
 
           <div className="relative">
             {/* 背景線 */}
-            <div className="absolute top-6 left-0  right-0 mx-7 h-1 bg-silver/30 rounded-full" />
+            <div className="absolute top-2.5 left-[10px] right-[10px] h-1 rounded-full bg-silver/30" />
 
             {/* 進度條（會隨時間滑動） */}
             <div
-              className="absolute top-5.75 left-0 h-1.5 mx-7 bg-aqua rounded-full transition-all duration-1000 ease-out"
-              style={{ width: `${progress}%` }}
+              className="absolute top-2.5 left-[10px] h-1 rounded-full bg-aqua transition-all duration-1000 ease-out"
+              style={{ width: `calc((100% - 20px) * ${progress / 100})` }}
             />
 
             {/* 三個時間點 */}
-            <div className="relative flex justify-between top-4">
+            <div className="relative flex justify-between">
               {timelineSteps.map((step, index) => {
                 // 根據 currentStepIndex 判斷節點是否已完成
                 // index 0 (報名開始): stepIndex >= 1

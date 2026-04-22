@@ -101,12 +101,17 @@ export const visitSections: VisitSection[] = [
           "參訪 Google 台灣辦公室，了解國際科技公司的企業文化與工作環境。透過實地參訪，讓小隊員親身體驗頂尖科技公司的創新氛圍，並與工程師交流，了解資訊產業的職涯發展與工作內容。",
         imageSrc: "/activities/tpke.jpg",
       },
-      { type: "placeholder"},
+      { type: "card",
+        title: "Line",
+        description:
+          "參訪 Line 台灣辦公室，深入了解亞洲勢站的通訊平台企業，走訪 Line 的創新工作環境。Line 的成員們將在講座中介紹 Line 的暑期實習計畫，並讓小隊員從工程師身上了解軟體開發與應用，探索資訊產業的職涯機會與工作內容。",
+        imageSrc: "/activities/line.jpg",
+      },
     ],
   },
   {
     emoji: "🎓",
-    title: "教授講座",
+    title: "教授短講",
     blocks: [
       { type: "card",
         title: "林軒田教授",
@@ -127,7 +132,11 @@ export const visitSections: VisitSection[] = [
     emoji: "💼",
     title: "職人講座",
     blocks: [
-      { type: "placeholder"},
+      { type: "card",
+        title: "遊戲工程師：詹易衡",
+        description: "詹易衡先生現職為專業遊戲設計師與工程師。在享譽國際的國產動作遊戲《九日》中，他擔任了舉足輕重的角色，開發範疇涵蓋了從最核心的戰鬥手感打磨、遊戲機制設計，到深層的程式架構規劃與技術美術。參與了遊戲從無到有的創造過程，與負責最終將作品推向不同平台的終端主機移植工作。\n詹易衡先生將在講座中和我們分享學生時期自學遊戲開發的經驗到進入獨立遊戲產業後的觀察。對於遊戲產業抱有憧憬的各位是否準備好進入遊戲的世界了呢？",
+        imageSrc: "/activities/jerry.png",
+      },
     ],
   },
 ];
