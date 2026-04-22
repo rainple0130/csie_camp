@@ -121,14 +121,14 @@ export function ApplyPageClient() {
             })}
           </div>
 
-          <div className="relative">
+          <div className="relative mx-2 sm:mx-7">
             {/* 背景線 */}
-            <div className="absolute top-2.5 left-[10px] right-[10px] h-1 rounded-full bg-silver/30" />
+            <div className="absolute top-2.5 left-0 right-0 h-1 rounded-full bg-silver/30" />
 
             {/* 進度條（會隨時間滑動） */}
             <div
-              className="absolute top-2.5 left-[10px] h-1 rounded-full bg-aqua transition-all duration-1000 ease-out"
-              style={{ width: `calc((100% - 20px) * ${progress / 100})` }}
+              className="absolute top-2.5 left-0 h-1 rounded-full bg-aqua transition-all duration-1000 ease-out"
+              style={{ width: `${progress}%` }}
             />
 
             {/* 三個時間點 */}
@@ -140,8 +140,15 @@ export function ApplyPageClient() {
                 // index 2 (錄取名單): stepIndex >= 3
                 const isCompleted = currentStepIndex > index;
 
+                const alignmentClass =
+                  index === 0
+                    ? "items-start text-left"
+                    : index === timelineSteps.length - 1
+                      ? "items-end text-right"
+                      : "items-center text-center";
+
                 return (
-                  <div key={index} className="flex flex-col items-center">
+                  <div key={index} className={`flex w-1/3 flex-col ${alignmentClass}`}>
                     <div
                       className={`h-5 w-5 rounded-full border-2 transition-all duration-300 ${
                         isCompleted
@@ -149,7 +156,7 @@ export function ApplyPageClient() {
                           : "bg-ivory border-silver"
                       }`}
                     />
-                    <div className="mt-2 text-center">
+                    <div className="mt-2">
                       <p className="text-xs font-semibold text-gray">{step.label}</p>
                       <p className="mt-1 text-xs text-silver">{step.date}</p>
                     </div>
