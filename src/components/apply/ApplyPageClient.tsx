@@ -45,7 +45,7 @@ export function ApplyPageClient() {
         stepIndex = 1; // 報名開始已完成
 
         // 計算剩餘時間
-        const remaining = applyEnd.getTime() - now.getTime();
+        const remaining = applyEnd.getTime() - now.getTime() + 1000 * 60 * 60 * 24;
         setTimeRemaining({
           days: Math.floor(remaining / (1000 * 60 * 60 * 24)),
           hours: Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -53,7 +53,7 @@ export function ApplyPageClient() {
         });
       } else if (now >= applyEnd && now < resultAnnounce) {
         phase = "review";
-        const total = resultAnnounce.getTime() - applyEnd.getTime();
+        const total = resultAnnounce.getTime() - applyEnd.getTime() + 1000 * 60 * 60 * 24;
         const elapsed = now.getTime() - applyEnd.getTime();
         progressValue = 50 + (elapsed / total) * 50; // 50-100%
         stepIndex = 2; // 報名開始、報名截止已完成
@@ -77,7 +77,7 @@ export function ApplyPageClient() {
 
   const timelineSteps = [
     { label: "報名開始", date: campDates.applyStart },
-    { label: "報名截止", date: campDates.applyRealEnd },
+    { label: "報名截止", date: campDates.applyEnd },
     { label: "錄取名單", date: campDates.resultAnnounce },
   ];
 
