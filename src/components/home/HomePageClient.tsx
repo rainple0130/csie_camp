@@ -53,7 +53,7 @@ export function HomePageClient() {
 						{campInfo.period}
 					</p>
 					<p className="ml-3 sm:ml-10 text-sm md:text-xl text-gray sm:-translate-y-10 -translate-y-5">
-						報名期限：{campDates.applyEnd}
+						報名期限：{campDates.applyEnd} 23:59
 					</p>
 					<Link
 						href={campInfo.formUrl}
