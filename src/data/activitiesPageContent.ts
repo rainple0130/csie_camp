@@ -104,7 +104,7 @@ export const visitSections: VisitSection[] = [
       { type: "card",
         title: "Line",
         description:
-          "參訪 Line 台灣辦公室，深入了解亞洲勢站的通訊平台企業，走訪 Line 的創新工作環境。Line 的成員們將在講座中介紹 Line 的暑期實習計畫，並讓小隊員從工程師身上了解軟體開發與應用，探索資訊產業的職涯機會與工作內容。",
+          "參訪 Line 台灣辦公室，深入了解亞洲最大的通訊平台企業之一，走訪 Line 的創新工作環境。Line 的成員們將在講座中介紹 Line 的暑期實習計畫，並讓小隊員從工程師身上了解軟體開發與應用，探索資訊產業的職涯機會與工作內容。",
         imageSrc: "/activities/line.jpg",
       },
     ],
