@@ -4,7 +4,7 @@ export const dynamic = "force-static";
 
 const SITE_URL = "https://csiecamp.csie.org";
 
-const ROUTES = ["", "/activities", "/courses", "/apply", "/faq"];
+const ROUTES = ["", "/activities", "/courses", "/apply", "/donate", "/faq"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();

@@ -10,6 +10,7 @@ const navItems = [
   { href: "/apply", label: "報名資訊" },
   { href: "/courses", label: "課程介紹" },
   { href: "/activities", label: "活動介紹" },
+  { href: "/donate", label: "贊助廠商" },
   { href: "/faq", label: "常見問題" },
 ];
 

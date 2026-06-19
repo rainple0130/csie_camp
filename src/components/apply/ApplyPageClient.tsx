@@ -176,12 +176,6 @@ export function ApplyPageClient() {
               </p>
             </div>
           )}
-          {currentPhase != "apply" && (
-            <div className="mt-6 text-center">
-              <p className="text-2xl text-orange font-bold"> 一階錄取確認：5/22 23:59 截止</p>
-              <p className="mt-2 text-sm text-silver"> （備取截止期限請見錄取信）</p>
-            </div>
-          )}
         </div>
 
         {/* 兩欄：費用說明與報名流程 */}
